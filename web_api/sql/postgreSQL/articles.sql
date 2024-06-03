@@ -11,6 +11,7 @@ CREATE TABLE public.articles (
 	description text NULL,
 	CONSTRAINT articles_pkey PRIMARY KEY (id),
   CONSTRAINT fk_articles FOREIGN KEY (authorid) REFERENCES users (id)
+  
 );
 
 
