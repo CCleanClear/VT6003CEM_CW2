@@ -7,7 +7,8 @@
 //   connection_limit: 100
 // }
 
-export const config = {
+//lab 
+/*export const config = {
   host: "floppy.db.elephantsql.com",
   port: 5432,
   user: "gmqrlzpc",
@@ -15,6 +16,20 @@ export const config = {
   database: "gmqrlzpc",
   connection_limit: 100
  }
+ */
+ 
+
+ //web api
+ export const config = {
+  host: "arjuna.db.elephantsql.com",
+  port: 5432,
+  user: "syoxzeyy",
+  password: "HSG_jaU5jJJ04oEU82mNwGCrYa79Ig1M",
+  database: "syoxzeyy",
+  connection_limit: 100
+ }
+
+
  
 
 /*
