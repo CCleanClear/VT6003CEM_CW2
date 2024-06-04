@@ -38,12 +38,29 @@ CREATE TABLE public.dogs (
   
 );
 
-INSERT INTO dogs (dogname, breed,summary, imageurl, locationid, writerid, description) VALUES
+CREATE TABLE public.articles (
+	id serial,
+	dogname varchar(32) NOT NULL,
+	breed text NOT NULL,
+	summary text NULL,
+	datecreated timestamp NOT NULL DEFAULT now(),
+	datemodified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	imageurl varchar(2048) NULL,
+	adopted bool NULL,
+	location varchar(32) NOT NULL,
+	writerid int4 NULL,
+	description text NULL,
+	CONSTRAINT article_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_article FOREIGN KEY (writerid) REFERENCES users (id)
+  
+);
+
+INSERT INTO articles (dogname, breed,summary, imageurl, location, writerid, description) VALUES
 	('Max', 'Labrador Retriever','Age: 3 years
-Medical Records: Up-to-date vaccinations, neutered, and microchipped','http://localhost:10888/api/v1/images/91bcb7be-a748-4ecc-9e5b-780727a2a78e',1 ,1,'Max is a friendly and energetic Labrador Retriever. He loves playing fetch.'),
+Medical Records: Up-to-date vaccinations, neutered, and microchipped','http://localhost:10888/api/v1/images/ef8ac20c-1eeb-4605-92cb-0aaf7e873777',"The Canine Shelter" ,1,'Max is a friendly and energetic Labrador Retriever. He loves playing fetch.'),
 	('Apple', 'German Shepherd','Age: 2 years
-Medical Records: Vaccinations up to date, spayed, and heartworm negative','http://localhost:10888/api/v1/images/4ea9358f-a367-4a20-8370-992c0468400a',2, 4,'Apple is a loyal and intelligent German Shepherd.  She is house-trained and knows basic commands.'),
+Medical Records: Vaccinations up to date, spayed, and heartworm negative','http://localhost:10888/api/v1/images/7e484eb6-afa7-47ec-a76a-2ed4bec73067',"The Canine Shelter", 4,'Apple is a loyal and intelligent German Shepherd.  She is house-trained and knows basic commands.'),
 	('John', 'Golden Retriever','Age: 5 years
-Medical Records: Vaccinated, spayed, and in good health','http://localhost:10888/api/v1/images/f7c5f8a1-3e00-4f95-8abb-79b2644defcc', 3, 1,'John is a gentle Golden Retriever.' ),
+Medical Records: Vaccinated, spayed, and in good health','http://localhost:10888/api/v1/images/dacf6518-110f-4046-846a-f8619093cce9', "The Canine Shelter", 1,'John is a gentle Golden Retriever.' ),
 	('Rocky', 'Bulldog', 'Age: 4 years
-Medical Records: Neutered, healthy', 'http://localhost:10888/api/v1/images/af822c14-2e7f-4d2e-b79f-001b4297a683',2, 4,'Rocky is a playful and friendly Bulldog.');
+Medical Records: Neutered, healthy', 'http://localhost:10888/api/v1/images/bfd79cf7-806c-4f0a-bfbd-10a15e5561ff3',"The Canine Shelter", 4,'Rocky is a playful and friendly Bulldog.');

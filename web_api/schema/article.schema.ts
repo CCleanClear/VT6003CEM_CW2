@@ -5,11 +5,11 @@ export const article = {
   "description": "An article in the blog",
   "type": "object",
   "properties": {
-    "title": {
+    "dogname": {
       "description": "Main title of the blog article",
       "type": "string"
     },
-    "alltext": {
+    "breed": {
       "description": "Body text of the blog article",
       "type": "string"
     },
@@ -17,15 +17,20 @@ export const article = {
       "description": "Optional short text summary of article",
       "type": "string"
     },
-    "imageURL": {
+    "imageurl": {
       "description": "URL for main image to show in article",
       "type": "uri"
     },
-    "published": {
+    "adopted": {
       "description": "Is the article published or not",
       "type": "boolean"
     },
-    "authorid": {
+    "location": {
+      "description": "User ID of the article author",
+      "type": "string"
+     
+    },
+    "writerid": {
       "description": "User ID of the article author",
       "type": "integer",
       "minimum": 0
@@ -35,5 +40,5 @@ export const article = {
       "type": "string"  
     }        
   },
-  "required": ["title", "alltext", "authorid"]
+  "required": ["dogname", "breed", "writerid"]
 }

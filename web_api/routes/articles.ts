@@ -19,11 +19,12 @@ const articles = [
 
 interface Post {
   id: number,
-  title: string,
-  alltext:string,
+  dogname: string,
+  breed:string,
   summary: string,
   imageurl: string,
-  authorid: number,
+  location: string,
+  writerid: number,
   description:string,
   links: {
     likes: string,
@@ -42,14 +43,14 @@ const {limit=100, page=1,  order="dateCreated", direction='ASC'} = ctx.request.q
   const result = await model.getAll(20, 1, order, direction);
    if (result.length) {
      const body: Post[] = result.map((post: any) => {
-       const { id = 0, title = "",  alltext="",summary = "", imageurl = "",authorid = 0,description="" }: Partial<Post> = post;
+       const { id = 0, dogname = "",  breed= "",summary = "", imageurl = "",location = "", writerid = 0,description= "" }: Partial<Post> = post;
        const links = {
          likes: `http://${ctx.host}/api/v1/articles/${post.id}/likes`,
          fav: `http://${ctx.host}/api/v1/articles/${post.id}/fav`,
          msg: `http://${ctx.host}/api/v1/articles/${post.id}/msg`,
          self: `http://${ctx.host}/api/v1/articles/${post.id}`
        };
-       return { id, title,   alltext,summary, imageurl,authorid, description, links }; // Utilizing the destructured elements
+       return { id, dogname,   breed,summary, imageurl,location, writerid, description, links }; // Utilizing the destructured elements
      });
   ctx.body = body;
   
