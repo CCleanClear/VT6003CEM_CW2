@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "dog": {
+        "id": "/dog",
+        "title": "Dog",
+        "description": "An article in the blog",
+        "type": "object",
+        "properties": {
+          "dogname": {
+            "description": "Name of the blog dog",
+            "type": "string"
+          },
+          "breed": {
+            "description": "Body text",
+            "type": "string"
+          },
+          "summary": {
+            "description": "Optional short text summary of dog",
+            "type": "string"
+          },
+          "imageurl": {
+            "description": "URL for main image to show in dog",
+            "type": "uri"
+          },
+          "adopted": {
+            "description": "Is the dog adopted or not",
+            "type": "boolean"
+          },
+          "locationid": {
+            "description": "Body text",
+            "type": "string"
+          },
+          "writerid": {
+            "description": "User ID of the article author",
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": {
+            "description": "description of articles in more details",
+            "type": "string"  
+          }        
+        },
+        "required": ["dogname", "breed", "writerid"]
+      }
+    }
+  }
+  
