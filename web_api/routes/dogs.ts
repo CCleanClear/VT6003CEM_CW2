@@ -33,7 +33,9 @@ interface Post {
     self: string
   }
 }
-const router:Router = new Router({prefix: '/api/v1/dogs'});
+const prefix = '/api/v1/dogs';
+const router:Router = new Router({ prefix: prefix });
+//const router:Router = new Router({prefix: '/api/v1/dogs'});
 
 const getAll = async (ctx: RouterContext, next: any) => {
   //ctx.body = dogs;
@@ -72,42 +74,42 @@ const doSearch = async(ctx: any, next: any) =>{
     let result:any;
     // search by single field and field contents
     // need to validate q input
-   try{
-    if (q !== "") 
-      result = await model.getSearch(fields, q);     
-    else
-    {console.log('get all')
-      result = await model.getAll(limit, page,order, direction);
-     console.log(result)
-    }
-      
-    if (result.length) {
-      if (fields !== "") {
-        // first ensure the fields are contained in an array
-        // need this since a single field in the query is passed as a string
-        console.log('fields'+fields)
-        if (!Array.isArray(fields)) {
-          fields = [fields];
+    try{
+        if (q !== "") 
+          result = await model.getSearch(fields, q);     
+        else
+        {console.log('get all')
+          result = await model.getAll(limit, page,order, direction);
+         console.log(result)
         }
-        // then filter each row in the array of results
-        // by only including the specified fields
-        result = result.map((record: any) => {
-          let partial: any = {};
-          for (let field of fields) {
-            partial[field] = record[field];
+          
+        if (result.length) {
+          if (fields !== "") {
+            // first ensure the fields are contained in an array
+            // need this since a single field in the query is passed as a string
+            console.log('fields'+fields)
+            if (!Array.isArray(fields)) {
+              fields = [fields];
+            }
+            // then filter each row in the array of results
+            // by only including the specified fields
+            result = result.map((record: any) => {
+              let partial: any = {};
+              for (let field of fields) {
+                partial[field] = record[field];
+              }
+              return partial;
+            });
           }
-          return partial;
-        });
+          console.log(result)
+          ctx.body = result;
+        }
       }
-      console.log(result)
-      ctx.body = result;
-    }
-  }
-    catch(error) {
-      return error
-    }
-   await next();
-  }
+        catch(error) {
+          return error
+        }
+       await next();
+      }
 
 const createDog = async (ctx: RouterContext, next: any) => {
   /*let c: any = ctx.request.body;
@@ -280,6 +282,7 @@ async function rmMsg(ctx: RouterContext, next: any){
 }
 
 router.get('/', getAll);
+router.get('/search', doSearch);
 router.post('/', basicAuth, bodyParser(), validateDog, createDog);
 router.get('/:id([0-9]{1,})', getById);
 router.put('/:id([0-9]{1,})', basicAuth, bodyParser(),validateDog, updateDog);

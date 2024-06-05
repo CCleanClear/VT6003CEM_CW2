@@ -4,11 +4,11 @@
     "user": {
       "id": "/user",
       "title": "User",
-    "description": "A user/staff in the blog",
+    "description": "A user/staff in the website",
       "type": "object",
       "properties": {
         "username": {
-          "description": "username of blog account",
+          "description": "username of account",
           "type": "string"
         },
         "email": {
@@ -26,7 +26,7 @@
         "role": {
           "description": "role of user",
           "type": "string"
-        },
+        }
 
       },
       "required": ["username", "password"]

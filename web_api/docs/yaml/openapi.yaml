@@ -1,22 +1,22 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Back End Demonstration API
-  description: A simple blog API.
+  title: Back End Dog API
+  description: A simple webstie API introduction.
   contact: 
-    name: CY Cheng
-    email: cycheng@vtc.edu.hk
+    name: Chan Tsz Yu
+    email: 237025296@@stu.vtc.edu.hk
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 servers:
-  - url: 'https://feec368b-f2cd-4c78-ba6d-d66f03597562-00-2xj5l7c94qwox.sisko.repl.co:3000/api/v1'
+  - url: 'http://localhost:10888/api/v1'
     description: Development server
 tags:
   - name: Users
     description: API endpoints for user management.
-  - name: Articles
-    description: Access and perform CRUD operations on blog entries.
+  - name: Dogs
+    description: Access and perform CRUD operations on website application.
   - name: Login
     description: login user account
       
@@ -45,14 +45,14 @@ paths:
                properties:              
                $ref: ./user.json#/definitions/user
         '404':
-          description: User was not found in the DB.
+          description: User was not found in the DB table.
     put:
       tags:
         - Users
       description:
-        Update user by ID.
+        Update user by ID of user table.
       requestBody:
-        description: Modify user record
+        description: Modify user information record
         required: true
         content:
           application/json:
@@ -60,9 +60,9 @@ paths:
               $ref: ./user.json#/definitions/user
       responses:
         '200':
-          description: View of an user record.
+          description: Update an user record.
         '404':
-          description: User was not found in the DB.
+          description: User was not found in the DB table.
     delete:
       tags:
         - Users
@@ -70,9 +70,9 @@ paths:
         Delete user by ID.
       responses:
         '200':
-          description: View of user record.
+          description: Delete of user record.
         '404':
-          description: User was not found in the DB.
+          description: User was not found in the DB table.
 
   /users/:
     parameters:
@@ -80,12 +80,12 @@ paths:
       name: limit
       schema:
         type: integer
-      description: no. of  records to display with 10 records/page
+      description: number of records to display with 10 records/page
     - in: query
       name: page
       schema:
         type: integer
-      description: starting page no.to display
+      description: starting page number to display
     - in: query
       name: fields
       schema:
@@ -95,14 +95,14 @@ paths:
       name: q
       schema:
         type: string
-      description: specifiy the search criteria  for either fields of username or email
+      description: specifiy the search criteria for either fields of username or email
     get:
       tags:
         - Users
       description: Get all users
       responses:
        '200':
-         description: OK
+         description: Sucess
          content:
            application/json:
              schema:
@@ -113,7 +113,7 @@ paths:
     post:
       tags:
        - Users
-      description: Create a new user
+      description: Create a new user account.
       requestBody:
         description: A new user data
         required: true
@@ -125,13 +125,13 @@ paths:
         '201':
           description: User created
         '400':
-          description: Bad request
+          description: Bad request, not meet the input require
   
   /users/login:
     post:
       tags:
        - Login
-      description: Login user account
+      description: Login user account.
       requestBody:
         description: login with username and password
         required: true
@@ -171,65 +171,86 @@ paths:
                    description: The user role.  
                  links:
                    type: uri
-                   description: The  link to user info by id.
+                   description: The link to user info by id.
 
         '404':
-          description: User was not found in the DB.
+          description: User was not found in the DB table.
         
-  /articles/{id}:
+  /dogs/{id}:
     parameters:
       - in: path
         name: id
         schema:
           type: integer
         required: true
-        description: Numeric id of the article
+        description: Numeric id of the dog
     get:
       tags:
-        - Articles
+        - Dogs
       description:
-        Get article by id.
+        Get dog record by id.
       responses:
         '200':
-          description: View of an article record.
+          description: View of a dog record.
         '404':
-          description: Article was not found in the DB.
+          description: Dog was not found in the DB table.
     put:
       tags:
-        - Articles
+        - Dogs
       description:
-        Update article by ID.
+        Update dog record by ID.
       requestBody:
-        description: A new article data
+        description: A new dog data
         required: true
         content:
           application/json:
             schema:
-              $ref: ./article.json#/definitions/article     
+              $ref: ./dog.json#/definitions/dog     
       responses:
         '200':
-          description: View of an article record.
+          description: Updata a dog record.
         '404':
-          description: Article was not found in the DB.
+          description: Dog record was not found in the DB table.
     delete:
       tags:
-        - Articles
+        - Dogs
       description:
-        Delete article by ID.
+        Delete dog record by ID.
       responses:
         '200':
-          description: View of an article record.
+          description: Delete a dog record.
         '404':
-          description: Article was not found in the DB.
-
-  /articles/: 
+          description: Dog record was not found in the DB table.
+  /dogs/search:
+    parameters:
+    - in: query
+      name: limit
+      schema:
+        type: integer
+      description: number of  records to display with 10 records/page
+    - in: query
+      name: page
+      schema:
+        type: integer
+      description: starting page no.to display
+    - in: query
+      name: fields
+      schema:
+        type: string
+      description: fields to display
+    - in: query
+      name: q
+      schema:
+        type: string
+      description: specifiy the search criteria  for either fields of dogname or breed
+     
     get:
       tags:
-      - Articles
-      description: Get all articles
+      - Dogs
+      description: Search dogs reocrd.
       responses:
         '200':
-          description: articles record.
+          description: dogs record.
           content:
             application/json:
              schema:
@@ -238,36 +259,77 @@ paths:
                  id:
                    type: integer
                    description: The id of article. 
-                 title:
+                 dogname:
                    type: string
-                   description: The title of article.
-                 imageurl:
+                   description: The name of dog.
+                 breed:
                    type: string
-                   description: The link to image of article.
+                   description: breed of dog
                  summary:
                    type: string
-                   description: summary of articles
-                 authorid:
+                   description: summary of dog
+                 locationid:
                    type: integer 
-                   description: The id of author.  
+                   description: The id of location place.  
+          '404':
+            description: Not Found  
+  /dogs/: 
+    get:
+      tags:
+      - Dogs
+      description: Get all dogs reocrd.
+      responses:
+        '200':
+          description: dogs record.
+          content:
+            application/json:
+             schema:
+               type: object 
+               properties:   
+                 id:
+                   type: integer
+                   description: The id of dog. 
+                 dogname:
+                   type: string
+                   description: The name of dog.
+                 breed:
+                   type: string
+                   description: The breed of dog.
+                 imageurl:
+                   type: string
+                   description: The link to image of dog.
+                 summary:
+                   type: string
+                   description: summary of dog.
+                 adopted:
+                    type: boolean
+                    description: The the adoption state.
+                 locationid:
+                    type: integer
+                    description: The dog location place id.
+                 writerid:
+                   type: integer 
+                   description: The id of writer.  
                  links:
                    type: uri array object
-                   description: include four links to likes,fav,msg and self with articleid respectively eg.articleid=1 [{"likes":"https://xxx:3000/api/v1/articles/1/likes"},{"fav":"https://xxx:3000/api/v1/articles/1/fav"},{"msg":"https://xxx:3000/api/v1/articles/1/msg"},{"self":"https:xxx:3000/api/v1/articles/1"}]
+                   description: include four links to likes,fav,msg and self with articleid respectively eg.articleid=1 [{"likes":"https://localhost:10888/api/v1/dogs/1/likes"},{"fav":"https://localhost:10888/api/v1/articles/1/fav"},{"msg":"https://localhost:10888/api/v1/articles/1/msg"},{"self":"https:localhost:10888/api/v1/articles/1"}]
           '404':
             description: Not Found  
     post:
       tags:
-       - Articles
-      description: Create a new article
+       - Dogs
+      description: Create a new dog record.
       requestBody:
-        description: A new article data
+        description: A new dog data
         required: true
         content:
           application/json:
             schema:
-              $ref: ./article.json#/definitions/article
+              $ref: ./dog.json#/definitions/dog
       responses:
         '201':
-          description: Articles created
+          description: Dog record created
         '400':
-          description: Bad request
+          description: Bad request, not meet the input require
+
+    

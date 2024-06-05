@@ -4,23 +4,23 @@
       "dog": {
         "id": "/dog",
         "title": "Dog",
-        "description": "An article in the blog",
+        "description": "A dog record in the website",
         "type": "object",
         "properties": {
           "dogname": {
-            "description": "Name of the blog dog",
+            "description": "Name of the dog",
             "type": "string"
           },
           "breed": {
-            "description": "Body text",
+            "description": "Breed of dog",
             "type": "string"
           },
           "summary": {
-            "description": "Optional short text summary of dog",
+            "description": "Short text summary of dog such as Age and Medical record",
             "type": "string"
           },
           "imageurl": {
-            "description": "URL for main image to show in dog",
+            "description": "URL for image of dog",
             "type": "uri"
           },
           "adopted": {
@@ -28,16 +28,16 @@
             "type": "boolean"
           },
           "locationid": {
-            "description": "Body text",
+            "description": "The place that located",
             "type": "string"
           },
           "writerid": {
-            "description": "User ID of the article author",
+            "description": "User ID of the post writer",
             "type": "integer",
             "minimum": 0
           },
           "description": {
-            "description": "description of articles in more details",
+            "description": "description of dog in more details",
             "type": "string"  
           }        
         },

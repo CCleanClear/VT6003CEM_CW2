@@ -44,8 +44,8 @@ export const add = async(dog: any) => {
 
 export const findByDogname = async (dogname: string) => {
   const query = 'SELECT * FROM dogs where dogname = ?';
-  const user = await db.run_query(query,  [dogname] );
-  return user;
+  const data = await db.run_query(query,  [dogname] );
+  return data;
 }
 
 
