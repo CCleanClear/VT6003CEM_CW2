@@ -6,11 +6,23 @@ userid int4,
 CONSTRAINT NoDuplicateLike UNIQUE (articleid, userid)
 );
 
+CREATE TABLE public.dogeslikes(
+dogesid int4,
+userid int4,
+CONSTRAINT NoDuplicateLike UNIQUE (dogesid, userid)
+);
+
 
 CREATE TABLE public.favs(
 articleid int4,
 userid int4,
 CONSTRAINT NoDuplicateFav UNIQUE (articleid, userid)
+);
+
+CREATE TABLE public.favs(
+dogid int4,
+userid int4,
+CONSTRAINT NoDuplicateFav UNIQUE (dogid, userid)
 );
 
 CREATE TABLE public.msgs(

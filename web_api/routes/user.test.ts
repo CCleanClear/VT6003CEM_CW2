@@ -30,6 +30,7 @@ describe('a simple api endpoint', () => {
         {
           "username": "name1",
           "password": "123456",
+          "role": "user"
         }
       );
 
