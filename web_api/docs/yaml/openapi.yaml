@@ -247,7 +247,7 @@ paths:
     get:
       tags:
       - Dogs
-      description: Search dogs reocrd.
+      description: Searched dogs reocrd.
       responses:
         '200':
           description: dogs record.

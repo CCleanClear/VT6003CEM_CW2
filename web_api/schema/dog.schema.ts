@@ -2,40 +2,40 @@ export const dog = {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "/dog",
   "title": "Dog",
-  "description": "An article in the blog",
+  "description": "Dog record in the website",
   "type": "object",
   "properties": {
     "dogname": {
-      "description": "Main title of the blog article",
+      "description": "Dogname of the dog",
       "type": "string"
     },
     "breed": {
-      "description": "Body text of the blog article",
+      "description": "Breed of the dog",
       "type": "string"
     },
     "summary": {
-      "description": "Optional short text summary of article",
+      "description": "Optional short text summary of dog",
       "type": "string"
     },
     "imageurl": {
-      "description": "URL for main image to show in article",
-      "type": "uri"
+      "description": "URL for main image to show in dog",
+      "type": "url"
     },
     "adopted": {
-      "description": "Is the article published or not",
+      "description": "Is the dog adopted or not",
       "type": "boolean"
     },
     "locationid": {
-      "description": "User ID of the article author",
+      "description": "Location ID of the dog place",
       "type": "string"
     },
     "writerid": {
-      "description": "User ID of the article author",
+      "description": "User ID of the dog record writer",
       "type": "integer",
       "minimum": 1
     },
     "description": {
-      "description": "description of articles in more details",
+      "description": "description of dog in more details",
       "type": "string"  
     }        
   },
