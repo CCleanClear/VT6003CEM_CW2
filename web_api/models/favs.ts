@@ -31,7 +31,7 @@ export const removeFav = async (id:any, uid:any) =>{
 
 }
 
-//list the fav  article for user
+//list the fav  dog for user
 export const listFav = async (id:any)=> {
   let query = "SELECT * FROM favs  WHERE userid=?";
    const result = await db.run_query(query, [id]);

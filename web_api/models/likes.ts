@@ -33,7 +33,7 @@ export const dislike = async  (id:any, uid:any)=> {
 
 }
 
-//count the likes for an article
+//count the likes for a dog
 
 export const count = async  (id:any) =>{
   let query = "SELECT count(1) as likes FROM dogeslikes WHERE dogesid=?;";

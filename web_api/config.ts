@@ -26,7 +26,7 @@
   user: "syoxzeyy",
   password: "HSG_jaU5jJJ04oEU82mNwGCrYa79Ig1M",
   database: "syoxzeyy",
-  connection_limit: 100
+  connection_limit: 200
  }
 
 
