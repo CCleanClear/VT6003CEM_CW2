@@ -48,17 +48,17 @@ const doSearch = async(ctx: any, next: any) =>{
         // need this since a single field in the query is passed as a string
         console.log('fields'+fields)
         if (!Array.isArray(fields)) {
-          fields = [fields];
+          fields = fields.split(",");
         }
         // then filter each row in the array of results
         // by only including the specified fields
-        result = result.map((record: any) => {
-          let partial: any = {};
-          for (let field of fields) {
-            partial[field] = record[field];
-          }
-          return partial;
-        });
+        // result = result.map((record: any) => {
+        //   let partial: any = {};
+        //   for (let field of fields) {
+        //     partial[field] = record[field];
+        //   }
+        //   return partial;
+        // });
       }
       console.log(result)
       ctx.body = result;

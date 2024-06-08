@@ -8,9 +8,15 @@ export const getAll = async  (limit=10, page=1) =>{
 }
 
 export const getSearch = async  (sfield:any,q:any) =>{
- const query = `SELECT ${sfield} FROM users WHERE ${sfield} LIKE '%${q}%' `;
- try{ const data = await db.run_query(query,null);
-  return data;}
+ try{ 
+  const query = `SELECT ${sfield} FROM users WHERE ${sfield} LIKE '%${q}%' `;
+  const data = await db.run_query(query,null);
+  const columnName = Object.keys(data[0])[0]; 
+
+  const query1 = `SELECT * FROM users WHERE ${columnName} LIKE '%${q}%' `;
+  const data1 = await db.run_query(query1,null);
+
+  return data1;}
   catch(error) {
     return error
 }
