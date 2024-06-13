@@ -52,7 +52,17 @@ const router: Router = new Router({ prefix: prefix });
 // const twitterClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAEjIuAEAAAAAqtLbi1DGRgAdjGaZJ9yap9ROGPk%3DLt5m9muGLFilBPcmMUJ5TfL887LO8hypqnuPJCaolUi2um1DxF');
 // const readOnlyClient = twitterClient.readWrite;
 
-const twitterClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAEjIuAEAAAAA847AbL9DOwOWxIwXC27Y%2BDUIrks%3Dq2h2tVrLSMKZD2yXsMn9ayfMjESSbMiQcRceX5jdiV4KWeaNhw');
+// const twitterClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAEjIuAEAAAAA847AbL9DOwOWxIwXC27Y%2BDUIrks%3Dq2h2tVrLSMKZD2yXsMn9ayfMjESSbMiQcRceX5jdiV4KWeaNhw');
+
+const client = new TwitterApi({
+  appKey: 'H7pwprZCUwNKFUFBR2TP1E93R',
+  appSecret: 'm9Ml4SrXUCnRo1Ez8KJuOfDlPDtBu7ydCt6DNGw0mcxyhJW5tR',
+  accessToken: '1799320373475037184-VuzmEmUIQeWfjWHfzYftOhO4tCBN1l',
+  accessSecret: '5X96LoQS6KRAm7DdIPcAyiiyd3MVVaeQgR56cYEqRwLbf',
+
+});
+
+
 
 const getAll = async (ctx: RouterContext, next: any) => {
   //ctx.body = dogs;
@@ -126,28 +136,38 @@ const doSearch = async (ctx: any, next: any) => {
   }
   await next();
 };
+
 const createDog = async (ctx: RouterContext, next: any) => {
-  /*let c: any = ctx.request.body;
-  let title = c.title;
-  let fullText = c.fullText;
-  let newDog = {title: title, fullText: fullText};
-  dogs.push(newDog);
-  ctx.status = 201;
-  ctx.body = newDog;*/
-  const body = ctx.request.body;
+  const body = ctx.request.body as {dogname: string, breed: string, summary: string};
   let result = await model.add(body);
-  if (result.status == 201) {
+
+  if (result.status === 201) {
     ctx.status = 201;
     ctx.body = body;
 
+    const content = `New dog post:.\nDogname: ${body.dogname}.\nDog breed: ${body.breed}.\nSummary: ${body.summary}`;
+    const tweetText = async () => {
 
+      try {
+        const tweet = await client.v2.tweet(`${content}`);
+    console.log(`Tweet posted with ID ${tweet.data.id}`);
 
+        console.log("success");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    tweetText().catch((err) => {
+      console.log(err);
+    });
   } else {
     ctx.status = 500;
     ctx.body = { err: "insert data failed" };
   }
+
   await next();
-}
+};
 
 const getById = async (ctx: RouterContext, next: any) => {
   let id = +ctx.params.id;
