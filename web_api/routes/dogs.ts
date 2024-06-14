@@ -39,20 +39,6 @@ const prefix = '/api/v1/dogs';
 const router: Router = new Router({ prefix: prefix });
 //const router:Router = new Router({prefix: '/api/v1/dogs'});
 
-// const twitterConfig = {
-//   consumer_key: "emdDkWRYZdowR6af5MLqfBlUE",
-//   consumer_secret: "QTJVLwUrx8GyCNZnEugqhH5hPXwLOSt9MHSNxbYLHCe16Q5XJi",
-//   access_token: "1799320373475037184-0bi3JM6ojTQ39LiklQnjlilreetDse",
-//   access_token_secret: "JnKbygShFu6yKBjAhyYy32C1ZdZykc2Bu1ESaV9ongZZB",
-// };
-
-
-//const twitterClient = new Twit(twitterConfig);
-
-// const twitterClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAEjIuAEAAAAAqtLbi1DGRgAdjGaZJ9yap9ROGPk%3DLt5m9muGLFilBPcmMUJ5TfL887LO8hypqnuPJCaolUi2um1DxF');
-// const readOnlyClient = twitterClient.readWrite;
-
-// const twitterClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAEjIuAEAAAAA847AbL9DOwOWxIwXC27Y%2BDUIrks%3Dq2h2tVrLSMKZD2yXsMn9ayfMjESSbMiQcRceX5jdiV4KWeaNhw');
 
 const client = new TwitterApi({
   appKey: 'H7pwprZCUwNKFUFBR2TP1E93R',
