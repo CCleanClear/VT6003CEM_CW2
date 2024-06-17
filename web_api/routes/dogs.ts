@@ -9,6 +9,8 @@ import { basicAuth } from "../controllers/auth";
 import { TwitterApi } from 'twitter-api-v2';
 //import Twit from "twit";
 
+
+
 /*
 const dogs = [
   {title: 'Hello article', fullText: 'some text to fill the body'},
@@ -105,13 +107,13 @@ const doSearch = async (ctx: any, next: any) => {
         }
         // then filter each row in the array of results
         // by only including the specified fields
-        // result = result.map((record: any) => {
-        //   let partial: any = {};
-        //   for (let field of fields) {
-        //     partial[field] = record[field];
-        //   }
-        //   return partial;
-        // });
+        result = result.map((record: any) => {
+          let partial: any = {};
+          for (let field of fields) {
+            partial[field] = record[field];
+          }
+          return partial;
+        });
       }
       console.log(result)
       ctx.body = result;
@@ -131,7 +133,7 @@ const createDog = async (ctx: RouterContext, next: any) => {
     ctx.status = 201;
     ctx.body = body;
 
-    const content = `New dog post:.\nDogname: ${body.dogname}.\nDog breed: ${body.breed}.\nSummary: ${body.summary}`;
+    const content = `New dog post:\nDogname: ${body.dogname}.\nDog breed: ${body.breed}.\nSummary: ${body.summary}`;
     const tweetText = async () => {
 
       try {

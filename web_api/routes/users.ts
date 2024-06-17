@@ -20,7 +20,7 @@ const getAll = async(ctx: any, next: any) =>{
   
   }
 
-const doSearch = async(ctx: any, next: any) =>{
+  const doSearch = async(ctx: any, next: any) =>{
   
     let { limit = 50, page = 1, fields = "", q = "" } = ctx.request.query;
     // ensure params are integers
@@ -48,17 +48,17 @@ const doSearch = async(ctx: any, next: any) =>{
         // need this since a single field in the query is passed as a string
         console.log('fields'+fields)
         if (!Array.isArray(fields)) {
-          fields = fields.split(",");
+          fields = [fields];
         }
         // then filter each row in the array of results
         // by only including the specified fields
-        // result = result.map((record: any) => {
-        //   let partial: any = {};
-        //   for (let field of fields) {
-        //     partial[field] = record[field];
-        //   }
-        //   return partial;
-        // });
+        result = result.map((record: any) => {
+          let partial: any = {};
+          for (let field of fields) {
+            partial[field] = record[field];
+          }
+          return partial;
+        });
       }
       console.log(result)
       ctx.body = result;
@@ -89,7 +89,7 @@ const doSearch = async(ctx: any, next: any) =>{
     let email:any = body.email;
     let role:string = 'user';
     let secretkey:string = body.actiCode;
-    let secretList:string[]= ["mongkok_123456789", "mongkok_987654321","shatin_123456789","shatin_987654321","chaiwan_123456789","chaiwan_987654321" ]
+    let secretList:string[]= ["shatin_001123", "sheungshuieestate_002123","yuenlong_003123","shatin_001890","sheungshuieestate_002890","yuenlong_003890" ]
      if(secretkey)
      {for(let i=0;i<secretList.length;i++)
        if(secretkey==secretList[i])

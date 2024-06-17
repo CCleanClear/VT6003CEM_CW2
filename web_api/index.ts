@@ -10,6 +10,7 @@ import { router as dogs } from "./routes/dogs";
 import { router as special } from './routes/special';
 import { router as uploads } from './routes/uploads';
 import { router as users } from "./routes/users";
+import { router as locations } from "./routes/locations";
 import serve from 'koa-static';
 
 const app: Koa = new Koa();
@@ -35,6 +36,7 @@ app.use(dogs.middleware());
 app.use(special.middleware());
 app.use(uploads.middleware());
 app.use(users.middleware());
+app.use(locations.middleware());
 
 app.use(async (ctx: RouterContext, next: any) => {
   try {
