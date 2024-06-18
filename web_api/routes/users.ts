@@ -52,13 +52,13 @@ const getAll = async(ctx: any, next: any) =>{
         }
         // then filter each row in the array of results
         // by only including the specified fields
-        result = result.map((record: any) => {
-          let partial: any = {};
-          for (let field of fields) {
-            partial[field] = record[field];
-          }
-          return partial;
-        });
+        // result = result.map((record: any) => {
+        //   let partial: any = {};
+        //   for (let field of fields) {
+        //     partial[field] = record[field];
+        //   }
+        //   return partial;
+        // });
       }
       console.log(result)
       ctx.body = result;

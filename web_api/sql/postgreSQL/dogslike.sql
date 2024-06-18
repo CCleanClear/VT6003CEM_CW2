@@ -1,11 +1,5 @@
 
 
-CREATE TABLE public.articleslikes(
-articleid int4,
-userid int4,
-CONSTRAINT NoDuplicateLike UNIQUE (articleid, userid)
-);
-
 CREATE TABLE public.dogeslikes(
 dogesid int4,
 userid int4,
@@ -13,11 +7,6 @@ CONSTRAINT NoDuplicateLike UNIQUE (dogesid, userid)
 );
 
 
-CREATE TABLE public.favs(
-articleid int4,
-userid int4,
-CONSTRAINT NoDuplicateFav UNIQUE (articleid, userid)
-);
 
 CREATE TABLE public.favs(
 dogid int4,
@@ -25,14 +14,7 @@ userid int4,
 CONSTRAINT NoDuplicateFav UNIQUE (dogid, userid)
 );
 
-CREATE TABLE public.msgs(
-articleid int4,
-userid int4,
-username varchar(16) NOT NULL, 
-messagetxt text NULL,
-dateregistered timestamp NOT NULL DEFAULT now(),
-datemodified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+
 
 CREATE TABLE public.msgs(
 dogid int4,
@@ -44,8 +26,8 @@ datemodified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 //in case of existing table
-ALTER TABLE articleslikes
-ADD CONSTRAINT NoDuplicateLike UNIQUE (articleid, userid);
+ALTER TABLE dogslikes
+ADD CONSTRAINT NoDuplicateLike UNIQUE (dogid, userid);
 
 //sql added to model function
 ON CONFLICT ON CONSTRAINT  NoDuplicateLike  

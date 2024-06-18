@@ -7,6 +7,7 @@ import * as msgs from "../models/msgs";
 import { validateDog } from "../controllers/validation";
 import { basicAuth } from "../controllers/auth";
 import { TwitterApi } from 'twitter-api-v2';
+import { Url } from "url";
 //import Twit from "twit";
 
 
@@ -126,19 +127,19 @@ const doSearch = async (ctx: any, next: any) => {
 };
 
 const createDog = async (ctx: RouterContext, next: any) => {
-  const body = ctx.request.body as {dogname: string, breed: string, summary: string};
+  const body = ctx.request.body as { dogname: string, breed: string, summary: string, locationid: string, imageurl: Url };
   let result = await model.add(body);
 
   if (result.status === 201) {
     ctx.status = 201;
     ctx.body = body;
 
-    const content = `New dog post:\nDogname: ${body.dogname}.\nDog breed: ${body.breed}.\nSummary: ${body.summary}`;
+    const content = `New dog record post:\nDogname: ${body.dogname}\nDog breed: ${body.breed}\nSummary: ${body.summary}\nLocation:${body.locationid} of The Canine Shelter`;
     const tweetText = async () => {
 
       try {
         const tweet = await client.v2.tweet(`${content}`);
-    console.log(`Tweet posted with ID ${tweet.data.id}`);
+        console.log(`Tweet posted with ID ${tweet.data.id}`);
 
         console.log("success");
       } catch (error) {
