@@ -17,8 +17,6 @@ export const like = async  (id:any, uid:any) =>{
  }
  
 
- 
-
     
 
 //remove a like record

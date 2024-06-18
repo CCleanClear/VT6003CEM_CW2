@@ -13,10 +13,6 @@ export const addFav = async (id:any, uid:any) =>{
       }
   
   }
-  
-
-
-
     
 
 //remove a fav record
